@@ -1,0 +1,62 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>HTMX and Blazor</h1>
+
+<div class="container-fluid">
+    <h2>Call with loader</h2>
+
+    <div hx-post="/message" hx-indicator="#progress-indicator">
+        Click me and see indicator
+    </div>
+
+    <p id="progress-indicator" class="htmx-indicator">
+        Loading content ...
+    </p>
+</div>
+
+<div class="container-fluid">
+    <h2>Form</h2>
+
+    <form hx-post="/echo-payload-form" hx-target="#response-form">
+        <AntiforgeryToken />
+        <input class="form-control" type="email" name="email" placeholder="Enter Email" />
+        <input class="form-control" type="password" name="password" placeholder="Enter Password" />
+        <button class="btn">Submit</button>
+    </form>
+
+    <div id="response-form">
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <h2>Form Data from an arbitrary location</h2>
+
+    <button hx-post="/echo-payload-form"
+            hx-target="#response-body"
+            hx-include="#data"
+            class="btn">
+        Submit from Other place
+    </button>
+   
+    <div id="response-body">
+    </div>
+
+    <div id="data">
+        <AntiforgeryToken id="token" />
+        <input class="form-control" id="email-field" type="email" name="email" placeholder="Enter Email" />
+        <input class="form-control" id="pass-field" type="password" name="password" placeholder="Enter Password" />
+    </div>
+</div>
+
+<div class="container-fluid">
+    <h2>Upload</h2>
+
+    <form id="file-uploader" name="file-uploader" hx-post="/upload" hx-encoding="multipart/form-data">
+        <AntiforgeryToken/>
+        <InputFile name="file"></InputFile>
+        <button class="btn">Upload File</button>
+    </form>
+</div>

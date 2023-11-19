@@ -1,0 +1,20 @@
+﻿@if (File is not null)
+{
+    <p>File Data:</p>
+    <ul>
+        <li>Name: @File.FileName</li>
+        <li>Type: @File.ContentType</li>
+        <li>Size: @File.Length</li>
+    </ul>
+}
+else
+{
+    <p>No file was passed</p>
+}
+
+@code {
+
+    [Parameter]
+    public IFormFile? File { get; set; }
+
+}

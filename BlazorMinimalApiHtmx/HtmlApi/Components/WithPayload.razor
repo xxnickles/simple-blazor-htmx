@@ -1,0 +1,10 @@
+﻿<div>
+    <ul>
+        <li><b>Email:</b> @Data.Email</li>
+        <li><b>Password:</b> @Data.Password</li>
+    </ul>
+</div>
+
+@code {
+    [Parameter] public Payload Data { get; set; } = new(string.Empty, string.Empty);
+}
